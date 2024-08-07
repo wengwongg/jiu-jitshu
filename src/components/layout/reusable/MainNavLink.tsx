@@ -23,7 +23,9 @@ export default function MainNavLink({
         className="hover:bg-accent hover:text-accent-content px-6 py-3 rounded-md transition"
       >
         <FontAwesomeIcon className="min-w-4" icon={faIcon} />
-        {navIsExpanded && <span className="ml-3">{text}</span>}
+        {navIsExpanded && (
+          <span className="ml-3 lg:inline animate-fadeIn">{text}</span>
+        )}
       </li>
     </a>
   );

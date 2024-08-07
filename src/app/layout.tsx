@@ -15,7 +15,7 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "jiu-jitshu",
+  title: "jiu-jit · shū",
   description: "A Jiu-Jitsu app for making and tracking progress",
 };
 
@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${rubik.className} flex`}>
         <Navbar />
-        <div className="m-5">{children}</div>
+        <div className="p-10 w-full">{children}</div>
       </body>
     </html>
   );

@@ -15,14 +15,14 @@ import {
 import MainNavLink from "./reusable/MainNavLink";
 import ExpandableNavLink from "./reusable/ExpandableNavLink";
 import { SubNavLinkDefinition } from "./reusable/SubNavLink";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const logbookSublinks: SubNavLinkDefinition[] = [
   {
     faIcon: faWandSparkles,
     text: "Techniques",
-    url: "#",
+    url: "/techniques",
   },
   {
     faIcon: faHandFist,
@@ -36,18 +36,33 @@ const logbookSublinks: SubNavLinkDefinition[] = [
   },
 ];
 
+const mediaQuery = "(min-width: 1024px)";
+const mediaQueryList = window.matchMedia(mediaQuery);
+
 export default function Navbar() {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsExpanded(event.matches);
+    };
+
+    mediaQueryList.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQueryList.removeEventListener("change", handleChange);
+    };
+  }, []);
 
   return (
     <div
       className={`flex flex-col ${
         isExpanded ? "w-52" : "w-24"
-      }  h-screen py-10 bg-base-300 items-center border-r-2 border-neutral`}
+      }  h-screen py-10 bg-base-300 items-center border-r-2 border-neutral transition-all`}
+      id="nav"
     >
       <button
-        className="btn btn-ghost tooltip mb-2"
-        data-tip={isExpanded ? "Collapse nav" : "Expand nav"}
+        className={`hidden btn btn-ghost mb-2 lg:block`}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <FontAwesomeIcon icon={isExpanded ? faAnglesLeft : faAnglesRight} />

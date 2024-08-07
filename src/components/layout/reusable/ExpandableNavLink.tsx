@@ -32,7 +32,7 @@ export default function ExpandableNavLink({
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <FontAwesomeIcon className="min-w-4" icon={faIcon} />
-        {navIsExpanded && <span className="ml-3">{text}</span>}
+        {navIsExpanded && <span className="ml-3 animate-fadeIn">{text}</span>}
       </div>
 
       {isExpanded && (
